@@ -36,6 +36,7 @@ object Recursion extends App {
 
 
   def aConcatTailRecFunc(a: String, n: Int): String = {
+    @tailrec
     def concatHelper(nAcc: Int, acc: String): String = {
       if(nAcc <= 1) acc
       else concatHelper(nAcc - 1, a + acc)
@@ -48,23 +49,27 @@ object Recursion extends App {
 
 
   def isPrimeTailRec(n: Int): Boolean = {
+    @tailrec
     def primeTailRecHelper(nHelp: Int, acc: Boolean): Boolean ={
       if(nHelp <= 1) acc
       else ((n % nHelp) != 0) && primeTailRecHelper(nHelp-1,acc)
     }
     primeTailRecHelper(n/2,true)
   }
-  println("isPrimeTailRec: " + isPrimeTailRec(11))
+  println("isPrimeTailRec: " + isPrimeTailRec(2005))
 
 
 
-  def aFibonacciTailRec(a: Int): Int ={
-    def fibonacciTailRecHelper(nHelp: Int, acc: Int): Int = {
-      if(nHelp <= 2) acc
-      else fibonacciTailRecHelper(nHelp - 1,0) + a
+  def aFibonacciTailRec(n: Int): Int ={
+    def fibonacciTailRecHelper(i: Int, last: Int,nextLast: Int): Int = {
+      if(i == n) last
+      else fibonacciTailRecHelper(i + 1, last + nextLast, last)
     }
 
-    aFibonacciTailRec(a-1)
+    if(n <= 2) 1
+    fibonacciTailRecHelper(2,1,1)
   }
-  println("aFibonacciTailRec: " + aFibonacciTailRec(11))
+  println("aFibonacciTailRec: " + aFibonacciTailRec(8))
+
+
 }
