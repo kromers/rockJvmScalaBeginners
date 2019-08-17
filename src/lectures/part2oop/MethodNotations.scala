@@ -1,9 +1,5 @@
 package lectures.part2oop
 
-
-/**
-  * Created by Daniel.
-  */
 object MethodNotations extends App {
 
   class Person(val name: String, favoriteMovie: String, val age: Int = 0){
